@@ -1,0 +1,34 @@
+{
+  "name": "server-takemeout",
+  "version": "1.0.0",
+  "description": "RESTful API use by TakeMeOut application.",
+  "main": "index.js",
+  "author": "Gianluca Bonifazi",
+  "license": "MIT",
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "echo \"Error! No test specified.\" && exit 1"
+  },
+  "contributors": [
+    "Gianluca Bonifazi <info.gianlucabonifazi@gmail.com> (http://biuni.it)",
+    "Gianpio Sozzo <sozzogianpio@gmail.com>",
+    "Emanuele Longheu <longheu.emanuele@gmail.com>",
+    "Mattia Campeggi <campeggi92@gmail.com>",
+    "Luca Sanchioni <lucasan1211@gmail.com>"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Biuni/Server-TakeMeOut.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Biuni/Server-TakeMeOut/issues"
+  },
+  "homepage": "https://github.com/Biuni/Server-TakeMeOut#README",
+  "dependencies": {
+    "express": "^4.16.3",
+    "ip": "^1.1.5"
+  },
+  "devDependencies": {
+    "nodemon": "^1.17.3"
+  }
+}
