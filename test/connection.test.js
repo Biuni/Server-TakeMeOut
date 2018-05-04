@@ -23,7 +23,18 @@ describe('Connection', () => {
     chai.request(app)
       .get('/')
       .then((res) => {
-        expect(res.body.status).to.equal('connected')
+        expect(res.body.server).to.equal('connected')
+        done()
+      })
+      .catch((err) => {
+        throw err
+      })
+  })
+  it('GET - database status is connected', (done) => {
+    chai.request(app)
+      .get('/')
+      .then((res) => {
+        expect(res.body.database).to.equal('connected')
         done()
       })
       .catch((err) => {

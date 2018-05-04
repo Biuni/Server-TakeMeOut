@@ -1,12 +1,17 @@
 const express = require('express')
+const db = require('../config/db')
+const global = require('../config/global')
+
 const router = express.Router()
 
 // Controllo la connessione al server [ GET ]
 router.get('/', (req, res, next) => {
-  res.json({
-    status: 'connected',
-    message: 'Server online!',
-    version: '1.0.0'
+  db.query('SELECT 1 AS test', function (error, results, fields) {
+    res.json({
+      server: 'connected',
+      database: (error || results.length === 0) ? 'disconnected' : 'connected',
+      version: global.VERSION
+    })
   })
 })
 
