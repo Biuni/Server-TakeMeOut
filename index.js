@@ -6,6 +6,7 @@ const global = require('./config/global')
 const app = express()
 const port = global.PORT || 3000
 
+const doc = require('./routes/documentation')
 const connection = require('./routes/connection')
 const user = require('./routes/user')
 
@@ -13,6 +14,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json({ type: 'application/json' }))
 
 // Routing
+app.use('/', doc)
 app.use('/conn', connection)
 app.use('/user', user)
 
