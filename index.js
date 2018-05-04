@@ -1,9 +1,10 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const ip = require('ip').address()
+const global = require('./config/global')
 
 const app = express()
-const port = process.env.PORT || 3000
+const port = global.PORT || 3000
 
 const connection = require('./routes/connection')
 const user = require('./routes/user')
