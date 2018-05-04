@@ -3,7 +3,7 @@ RESTful API used by TakeMeOut application.
 
 ## Install the server
 
-  - Install [NodeJS](https://nodejs.org/en/) (reccomendend LTS version)
+  - Install [NodeJS](https://nodejs.org/en/) (reccomendend LTS version) and [Git](https://git-scm.com/)
   - Clone this repository on your local machine (or download as a ZIP)
     ```sh
     $ git clone https://github.com/Biuni/Server-TakeMeOut.git

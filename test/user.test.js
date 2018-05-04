@@ -8,13 +8,26 @@ const expect = chai.expect
 chai.use(chaiHttp)
 
 describe('User', () => {
-  it('Get user information responds with status 200', (done) => {
+  it('GET - user info responds with status 200', (done) => {
     chai.request(app)
       .get('/user/1')
-      .end((err, res) => {
-        if (err) return
+      .then((res) => {
         expect(res).to.have.status(200)
         done()
+      })
+      .catch((err) => {
+        throw err
+      })
+  })
+  it('GET - user info response is a JSON', (done) => {
+    chai.request(app)
+      .get('/user/1')
+      .then((res) => {
+        expect(res.body).to.be.an('object')
+        done()
+      })
+      .catch((err) => {
+        throw err
       })
   })
 })

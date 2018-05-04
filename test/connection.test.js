@@ -8,13 +8,26 @@ const expect = chai.expect
 chai.use(chaiHttp)
 
 describe('Connection', () => {
-  it('Server responds with status 200', (done) => {
+  it('GET - server responds with status 200', (done) => {
     chai.request(app)
       .get('/')
-      .end((err, res) => {
-        if (err) return
+      .then((res) => {
         expect(res).to.have.status(200)
         done()
+      })
+      .catch((err) => {
+        throw err
+      })
+  })
+  it('GET - server status is connected', (done) => {
+    chai.request(app)
+      .get('/')
+      .then((res) => {
+        expect(res.body.status).to.equal('connected')
+        done()
+      })
+      .catch((err) => {
+        throw err
       })
   })
 })
