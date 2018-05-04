@@ -23,7 +23,7 @@
   "bugs": {
     "url": "https://github.com/Biuni/Server-TakeMeOut/issues"
   },
-  "homepage": "https://github.com/Biuni/Server-TakeMeOut#README",
+  "homepage": "https://github.com/Biuni/Server-TakeMeOut/blob/master/README.md",
   "dependencies": {
     "body-parser": "^1.18.2",
     "express": "^4.16.3",

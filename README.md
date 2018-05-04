@@ -16,6 +16,8 @@ RESTful API used by TakeMeOut application.
     ```
   - Now the server is online on your local network interface on port 3000 (e.g: `192.168.1.8:3000`) and it's visible by all devices connected on the LAN.
 
+  *INFO: The server needs a database. You can request it by contact one of the contributors. The connection variables are in `./config/global.js`*
+
 ## Authors
 | Name |
 | ------ |
@@ -24,3 +26,6 @@ RESTful API used by TakeMeOut application.
 | Emanuele Longheu |
 | Mattia Campeggi |
 | Luca Sanchioni |
+
+## API Documentation
+Work in progress...
