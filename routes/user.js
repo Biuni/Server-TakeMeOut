@@ -5,8 +5,8 @@ const router = express.Router()
 router.get('/:id', (req, res, next) => {
   res.json({
     user_id: req.params.id,
-    mail: "example@mail.com",
-    name: "Jhon Wayne"
+    mail: 'example@mail.com',
+    name: 'Jhon Wayne'
   })
 })
 
