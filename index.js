@@ -13,7 +13,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json({ type: 'application/json' }))
 
 // Routing
-app.use('/', connection)
+app.use('/conn', connection)
 app.use('/user', user)
 
 app.listen(port, ip, () => {

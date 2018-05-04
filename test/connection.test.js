@@ -10,7 +10,7 @@ chai.use(chaiHttp)
 describe('Connection', () => {
   it('GET - server responds with status 200', (done) => {
     chai.request(app)
-      .get('/')
+      .get('/conn/info')
       .then((res) => {
         expect(res).to.have.status(200)
         done()
@@ -21,7 +21,7 @@ describe('Connection', () => {
   })
   it('GET - server status is connected', (done) => {
     chai.request(app)
-      .get('/')
+      .get('/conn/info')
       .then((res) => {
         expect(res.body.server).to.equal('connected')
         done()
@@ -32,7 +32,7 @@ describe('Connection', () => {
   })
   it('GET - database status is connected', (done) => {
     chai.request(app)
-      .get('/')
+      .get('/conn/info')
       .then((res) => {
         expect(res.body.database).to.equal('connected')
         done()

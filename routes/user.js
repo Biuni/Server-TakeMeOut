@@ -6,11 +6,32 @@ const db = require('../config/db')
 const router = express.Router()
 
 // Informazioni sull'utente [ GET ]
-router.get('/get/:id', (req, res, next) => {
-  db.query('SELECT `mail`, `name`, `uuid` FROM `user` WHERE `uuid` = ?', [req.params.id], function (error, results, fields) {
+router.get('/get/:uuid', (req, res, next) => {
+  db.query('SELECT `mail`, `name`, `uuid` FROM `user` WHERE `uuid` = ?', [req.params.uuid], function (error, results, fields) {
     res.json({
       status: (error || results.length === 0) ? 0 : 1,
       message: (error || results.length === 0) ? 'Error. Try again!' : results[0]
+    })
+  })
+})
+
+// Login dell'utente [ POST ]
+router.post('/login', (req, res, next) => {
+  if (req.body.pwd === '' || req.body.pwd === undefined ||
+      req.body.mail === '' || req.body.mail === undefined) {
+    return res.json({
+      status: 0,
+      message: 'Error. Try again!'
+    })
+  }
+  var logUser = {
+    mail: req.body.mail,
+    password: crypto.createHash('sha256').update(req.body.pwd).digest('hex')
+  }
+  db.query('SELECT `mail`, `name`, `uuid` FROM `user` WHERE `mail` = ? AND `password` = ?', [logUser.mail, logUser.password], function (error, results, fields) {
+    res.json({
+      status: (error || results.length === 0) ? 0 : 1,
+      message: (error || results.length === 0) ? 'Wrong email or password!' : results[0]
     })
   })
 })

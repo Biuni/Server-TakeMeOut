@@ -19,13 +19,16 @@ RESTful API used by TakeMeOut application.
   *INFO: The server needs a database. You can request it by contact one of the contributors. The connection variables are in `./config/global.js`*
 
 ## Authors
-| Name |
-| ------ |
-| Gianluca Bonifazi |
-| Gianpio Sozzo |
-| Emanuele Longheu |
-| Mattia Campeggi |
-| Luca Sanchioni |
+  - Gianluca Bonifazi
+  - Gianpio Sozzo
+  - Emanuele Longheu
+  - Mattia Campeggi
+  - Luca Sanchioni
 
 ## API Documentation
-Work in progress...
+| Type | Path | Params | About |
+| ------ | ------ | ------ | ------ |
+| `GET` | `/conn/info` | -- | Get information about the server and the database connection |
+| `GET` | `/user/get/:uuid` | *uuid* | Get user information by uuid |
+| `POST` | `/user/register` | *mail* - *pwd* - *name* | Register a new user |
+| `POST` | `/user/login` | *mail* - *pwd* | Login an user |

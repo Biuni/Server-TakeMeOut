@@ -42,4 +42,16 @@ describe('User', () => {
         throw err
       })
   })
+  it('POST - send not JSON data to login user responds always a JSON', (done) => {
+    chai.request(app)
+      .post('/user/login')
+      .send('randomData')
+      .then((res) => {
+        expect(res.body).to.be.an('object')
+        done()
+      })
+      .catch((err) => {
+        throw err
+      })
+  })
 })
