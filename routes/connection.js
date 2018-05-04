@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 
-// Controllo connesione al server [ GET ]
+// Controllo la connessione al server [ GET ]
 router.get('/', (req, res, next) => {
   res.json({
     status: 'connected',
