@@ -29,6 +29,7 @@ RESTful API used by TakeMeOut application.
 | Type | Path | Params | About |
 | ------ | ------ | ------ | ------ |
 | `GET` | `/conn/info` | -- | Get information about the server and the database connection |
+| `GET` | `/conn/data` | -- | Get the database table with node information |
 | `GET` | `/user/get/:uuid` | *uuid* | Get user information by uuid |
 | `POST` | `/user/register` | *mail* - *pwd* - *name* | Register a new user |
 | `POST` | `/user/login` | *mail* - *pwd* | Login an user |

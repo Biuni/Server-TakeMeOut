@@ -5,9 +5,9 @@ const db = require('../config/db')
 
 const router = express.Router()
 
-// Informazioni sull'utente [ GET ]
+// Information about the user [ GET ]
 router.get('/get/:uuid', (req, res, next) => {
-  db.query('SELECT `mail`, `name`, `uuid` FROM `user` WHERE `uuid` = ?', [req.params.uuid], function (error, results, fields) {
+  db.query('SELECT `mail`, `name`, `uuid` FROM `user` WHERE `uuid` = ?', [req.params.uuid], (error, results, fields) => {
     res.json({
       status: (error || results.length === 0) ? 0 : 1,
       message: (error || results.length === 0) ? 'Error. Try again!' : results[0]
@@ -15,7 +15,7 @@ router.get('/get/:uuid', (req, res, next) => {
   })
 })
 
-// Login dell'utente [ POST ]
+// User login [ POST ]
 router.post('/login', (req, res, next) => {
   if (req.body.pwd === '' || req.body.pwd === undefined ||
       req.body.mail === '' || req.body.mail === undefined) {
@@ -28,7 +28,7 @@ router.post('/login', (req, res, next) => {
     mail: req.body.mail,
     password: crypto.createHash('sha256').update(req.body.pwd).digest('hex')
   }
-  db.query('SELECT `mail`, `name`, `uuid` FROM `user` WHERE `mail` = ? AND `password` = ?', [logUser.mail, logUser.password], function (error, results, fields) {
+  db.query('SELECT `mail`, `name`, `uuid` FROM `user` WHERE `mail` = ? AND `password` = ?', [logUser.mail, logUser.password], (error, results, fields) => {
     res.json({
       status: (error || results.length === 0) ? 0 : 1,
       message: (error || results.length === 0) ? 'Wrong email or password!' : results[0]
@@ -36,7 +36,7 @@ router.post('/login', (req, res, next) => {
   })
 })
 
-// Registrazione di un nuovo utente [ POST ]
+// User registration [ POST ]
 router.post('/register', (req, res, next) => {
   if (req.body.pwd === '' || req.body.pwd === undefined ||
       req.body.mail === '' || req.body.mail === undefined ||
@@ -53,8 +53,7 @@ router.post('/register', (req, res, next) => {
     name: req.body.name,
     date: new Date().toJSON()
   }
-
-  db.query('INSERT INTO user SET ?', newUser, function (error, results, fields) {
+  db.query('INSERT INTO user SET ?', newUser, (error, results, fields) => {
     res.json({
       status: (error) ? 0 : 1,
       message: (error) ? 'Error. Try again!' : 'User registered!'

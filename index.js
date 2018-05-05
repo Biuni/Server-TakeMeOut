@@ -19,7 +19,7 @@ app.use('/conn', connection)
 app.use('/user', user)
 
 app.listen(port, ip, () => {
-  console.log('Live on => ' + ip + ':3000\n')
+  console.log(`Live on => ${ip}:3000\n`)
 })
 
 module.exports = app

@@ -41,4 +41,15 @@ describe('Connection', () => {
         throw err
       })
   })
+  it('GET - the node table is downloaded as a JSON', (done) => {
+    chai.request(app)
+      .get('/conn/data')
+      .then((res) => {
+        expect(res.body).to.be.an('object')
+        done()
+      })
+      .catch((err) => {
+        throw err
+      })
+  })
 })
