@@ -41,11 +41,11 @@ describe('Connection', () => {
         throw err
       })
   })
-  it('GET - the node table is downloaded as a JSON', (done) => {
+  it('GET - the database is downloadable', (done) => {
     chai.request(app)
       .get('/conn/data')
       .then((res) => {
-        expect(res.body).to.be.an('object')
+        expect(res.body.status).to.equal(1)
         done()
       })
       .catch((err) => {

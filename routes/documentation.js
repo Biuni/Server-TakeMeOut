@@ -1,7 +1,11 @@
 const express = require('express')
 const router = express.Router()
 
-// Print the JSON with all API and the relative documentation [ GET ]
+/**
+ * @api - {GET} - / - Get the API documentation
+ * @apiName - GetDocumentation
+ * @apiGroup - Documentation
+ */
 router.get('/', (req, res, next) => {
   res.json({
     title: 'TakeMeOut Server',

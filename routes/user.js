@@ -5,23 +5,37 @@ const db = require('../config/db')
 
 const router = express.Router()
 
-// Information about the user [ GET ]
+/**
+ * @api - {GET} - /user/get/:uuid - Request user information
+ * @apiName - GetUser
+ * @apiGroup - User
+ *
+ * @apiParam - {String} uuid - Users unique ID.
+ */
 router.get('/get/:uuid', (req, res, next) => {
   db.query('SELECT `mail`, `name`, `uuid` FROM `user` WHERE `uuid` = ?', [req.params.uuid], (error, results, fields) => {
     res.json({
       status: (error || results.length === 0) ? 0 : 1,
-      message: (error || results.length === 0) ? 'Error. Try again!' : results[0]
+      message: (error || results.length === 0) ? `Error. ${(error) ? error.sqlMessage : 'No user with this UUID'}` : null,
+      result: results
     })
   })
 })
 
-// User login [ POST ]
+/**
+ * @api - {POST} - /user/login - User authentication
+ * @apiName - LoginUser
+ * @apiGroup - User
+ *
+ * @apiParam - {String} pwd   - User password.
+ * @apiParam - {String} mail  - User registration mail.
+ */
 router.post('/login', (req, res, next) => {
   if (req.body.pwd === '' || req.body.pwd === undefined ||
       req.body.mail === '' || req.body.mail === undefined) {
     return res.json({
       status: 0,
-      message: 'Error. Try again!'
+      message: 'Error! Try again.'
     })
   }
   var logUser = {
@@ -31,12 +45,21 @@ router.post('/login', (req, res, next) => {
   db.query('SELECT `mail`, `name`, `uuid` FROM `user` WHERE `mail` = ? AND `password` = ?', [logUser.mail, logUser.password], (error, results, fields) => {
     res.json({
       status: (error || results.length === 0) ? 0 : 1,
-      message: (error || results.length === 0) ? 'Wrong email or password!' : results[0]
+      message: (error || results.length === 0) ? `Error. ${(error) ? error.sqlMessage : 'Incorrect mail or password'}` : null,
+      result: results
     })
   })
 })
 
-// User registration [ POST ]
+/**
+ * @api - {POST} - /user/register - User registration
+ * @apiName - RegisterUser
+ * @apiGroup - User
+ *
+ * @apiParam - {String} pwd   - User password.
+ * @apiParam - {String} mail  - User mail.
+ * @apiParam - {String} name  - User name and surname.
+ */
 router.post('/register', (req, res, next) => {
   if (req.body.pwd === '' || req.body.pwd === undefined ||
       req.body.mail === '' || req.body.mail === undefined ||
@@ -56,7 +79,8 @@ router.post('/register', (req, res, next) => {
   db.query('INSERT INTO user SET ?', newUser, (error, results, fields) => {
     res.json({
       status: (error) ? 0 : 1,
-      message: (error) ? 'Error. Try again!' : 'User registered!'
+      message: (error) ? `Error! ${error.sqlMessage}` : null,
+      result: (error) ? `User not registered` : 'User registered'
     })
   })
 })

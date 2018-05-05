@@ -30,10 +30,20 @@ describe('User', () => {
         throw err
       })
   })
-  it('POST - send not JSON data to create user responds always a JSON', (done) => {
+  it('GET - sending wrong id to fetch user data responds with an error', (done) => {
+    chai.request(app)
+      .get('/user/get/1')
+      .then((res) => {
+        expect(res.body.status).to.equal(0)
+        done()
+      })
+      .catch((err) => {
+        throw err
+      })
+  })
+  it('POST - user registration response is a JSON', (done) => {
     chai.request(app)
       .post('/user/register')
-      .send('randomData')
       .then((res) => {
         expect(res.body).to.be.an('object')
         done()
@@ -42,12 +52,35 @@ describe('User', () => {
         throw err
       })
   })
-  it('POST - send not JSON data to login user responds always a JSON', (done) => {
+  it('POST - sending random data to registration responds with an error', (done) => {
+    chai.request(app)
+      .post('/user/register')
+      .send('randomData')
+      .then((res) => {
+        expect(res.body.status).to.equal(0)
+        done()
+      })
+      .catch((err) => {
+        throw err
+      })
+  })
+  it('POST - user authentication response is a JSON', (done) => {
+    chai.request(app)
+      .post('/user/login')
+      .then((res) => {
+        expect(res.body).to.be.an('object')
+        done()
+      })
+      .catch((err) => {
+        throw err
+      })
+  })
+  it('POST - sending random data to authentication responds with an error', (done) => {
     chai.request(app)
       .post('/user/login')
       .send('randomData')
       .then((res) => {
-        expect(res.body).to.be.an('object')
+        expect(res.body.status).to.equal(0)
         done()
       })
       .catch((err) => {

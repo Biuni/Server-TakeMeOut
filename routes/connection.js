@@ -4,7 +4,11 @@ const global = require('../config/global')
 
 const router = express.Router()
 
-// Check the server and database connection [ GET ]
+/**
+ * @api - {GET} - /conn/info - Check server and database connection
+ * @apiName - InfoConnection
+ * @apiGroup - Connection
+ */
 router.get('/info', (req, res, next) => {
   db.query('SELECT 1 AS test', (error, results, fields) => {
     res.json({
@@ -15,12 +19,17 @@ router.get('/info', (req, res, next) => {
   })
 })
 
-// Download the updated version of database [ GET ]
+/**
+ * @api - {GET} - /conn/data - Download the last version of database
+ * @apiName - DataConnection
+ * @apiGroup - Connection
+ */
 router.get('/data', (req, res, next) => {
   db.query('SELECT * FROM node', (error, results, fields) => {
     res.json({
       status: (error || results.length === 0) ? 0 : 1,
-      db: (error || results.length === 0) ? 'Error! Try Again.' : results
+      message: (error || results.length === 0) ? `Error. ${error.sqlMessage}` : null,
+      result: results
     })
   })
 })
