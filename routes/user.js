@@ -76,7 +76,7 @@ router.post('/register', (req, res, next) => {
     name: req.body.name,
     date: new Date().toJSON()
   }
-  db.query('INSERT INTO user SET ?', newUser, (error, results, fields) => {
+  db.query('INSERT INTO `user` SET ?', newUser, (error, results, fields) => {
     res.json({
       status: (error) ? 0 : 1,
       message: (error) ? `Error! ${error.sqlMessage}` : null,

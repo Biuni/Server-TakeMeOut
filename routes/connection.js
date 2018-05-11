@@ -1,5 +1,6 @@
 const express = require('express')
 const db = require('../config/db')
+const promise = require('../config/promisify')
 const global = require('../config/global')
 
 const router = express.Router()
@@ -25,13 +26,33 @@ router.get('/info', (req, res, next) => {
  * @apiGroup - Connection
  */
 router.get('/data', (req, res, next) => {
-  db.query('SELECT * FROM node', (error, results, fields) => {
-    res.json({
-      status: (error || results.length === 0) ? 0 : 1,
-      message: (error || results.length === 0) ? `Error. ${error.sqlMessage}` : null,
-      result: results
+  let nodeDb, routeDb, error
+  promise.query('SELECT * FROM `node`')
+    .then(rows => {
+      nodeDb = rows
+      error = false
+      return promise.query('SELECT * FROM `route`')
+    }, err => {
+      error = err
+      return error
     })
-  })
+    .then(rows => {
+      routeDb = rows
+      error = false
+    }, err => {
+      error = err
+      return error
+    })
+    .then(() => {
+      res.json({
+        status: (error) ? 0 : 1,
+        message: (error) ? `Error! Somethings goes wrong!` : null,
+        results: {
+          node: nodeDb,
+          route: routeDb
+        }
+      })
+    })
 })
 
 module.exports = router
