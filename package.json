@@ -25,6 +25,7 @@
   },
   "homepage": "https://github.com/Biuni/Server-TakeMeOut/blob/master/README.md",
   "dependencies": {
+    "bluebird": "^3.5.1",
     "body-parser": "^1.18.2",
     "express": "^4.16.3",
     "ip": "^1.1.5",

@@ -1,6 +1,6 @@
 const express = require('express')
 const db = require('../config/db')
-const promise = require('../config/promisify')
+const promisify = require('../config/promisify')
 const global = require('../config/global')
 
 const router = express.Router()
@@ -27,11 +27,11 @@ router.get('/info', (req, res, next) => {
  */
 router.get('/data', (req, res, next) => {
   let nodeDb, routeDb, error
-  promise.query('SELECT * FROM `node`')
+  promisify.query('SELECT * FROM `node`')
     .then(rows => {
       nodeDb = rows
       error = false
-      return promise.query('SELECT * FROM `route`')
+      return promisify.query('SELECT * FROM `route`')
     }, err => {
       error = err
       return error

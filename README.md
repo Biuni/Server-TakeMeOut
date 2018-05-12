@@ -3,7 +3,7 @@ RESTful API used by TakeMeOut application.
 
 ## Install the server
 
-  - Install [NodeJS](https://nodejs.org/en/) (reccomendend LTS version) and [Git](https://git-scm.com/)
+  - Install [NodeJS](https://nodejs.org/en/) (reccomendend the last LTS version) and [Git](https://git-scm.com/)
   - Clone this repository on your local machine (or download as a ZIP)
     ```sh
     $ git clone https://github.com/Biuni/Server-TakeMeOut.git
@@ -33,3 +33,7 @@ RESTful API used by TakeMeOut application.
 | `GET` | `/user/get/:uuid` | *uuid* | Get user information by uuid |
 | `POST` | `/user/register` | *mail* - *pwd* - *name* | Register a new user |
 | `POST` | `/user/login` | *mail* - *pwd* | Login an user |
+| `GET` | `/nav/send/:beacon` | *beacon* | Get the shortest path to safe place using beacon id |
+
+
+[![JavaScript Style Guide](https://cdn.rawgit.com/standard/standard/master/badge.svg)](https://github.com/standard/standard)

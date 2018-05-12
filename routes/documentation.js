@@ -63,6 +63,15 @@ router.get('/', (req, res, next) => {
           name: 'pwd',
           type: 'String'
         }]
+      }],
+      navigation: [{
+        type: 'GET',
+        path: '/nav/send/:beacon',
+        info: 'Get the shortest path to safe place using beacon id',
+        params: {
+          name: 'beacon',
+          type: 'String'
+        }
       }]
     }
   })
