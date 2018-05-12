@@ -10,6 +10,7 @@ const doc = require('./routes/documentation')
 const connection = require('./routes/connection')
 const user = require('./routes/user')
 const navigation = require('./routes/navigation')
+const notfound = require('./routes/notfound')
 
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json({ type: 'application/json' }))
@@ -19,6 +20,7 @@ app.use('/', doc)
 app.use('/conn', connection)
 app.use('/user', user)
 app.use('/nav', navigation)
+app.use(notfound)
 
 app.listen(port, ip, () => {
   console.log(`Live on => ${ip}:3000\n`)
