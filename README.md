@@ -1,10 +1,13 @@
 # Server-TakeMeOut
+![https://david-dm.org/Biuni/Server-TakeMeOut/status.svg](https://david-dm.org/Biuni/Server-TakeMeOut/status.svg)
+![https://david-dm.org/Biuni/Server-TakeMeOut/dev-status.svg](https://david-dm.org/Biuni/Server-TakeMeOut/dev-status.svg)
+
 RESTful API used by TakeMeOut application.
 
 ## Install the server
 
-  - Install [NodeJS](https://nodejs.org/en/) (reccomendend the last LTS version) and [Git](https://git-scm.com/)
-  - Clone this repository on your local machine (or download as a ZIP)
+  - Install [NodeJS](https://nodejs.org/en/) (reccomendend the last LTS version)
+  - Clone this repository (requires [Git](https://git-scm.com/)) on your local machine (or download as a ZIP)
     ```sh
     $ git clone https://github.com/Biuni/Server-TakeMeOut.git
     ```
@@ -16,7 +19,7 @@ RESTful API used by TakeMeOut application.
     ```
   - Now the server is online on your local network interface on port 3000 (e.g: `192.168.1.8:3000`) and it's visible by all devices connected on the LAN.
 
-  *INFO: The server needs a database. You can request it by contact one of the contributors. The connection variables are in `./config/global.js`*
+  *INFO: The server needs a mysql database. You can request a copy of it by contact one of the contributors. The connection variables are in `./config/global.js`*
 
 ## Authors
   - Gianluca Bonifazi

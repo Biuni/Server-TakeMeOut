@@ -47,5 +47,8 @@
       "pre-commit": "yarn test",
       "pre-push": "yarn test"
     }
+  },
+  "engines": {
+    "node": ">=6.5.0"
   }
 }
