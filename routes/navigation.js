@@ -15,7 +15,7 @@ const graph = new Map()
  * @apiParam - {String} beacon - The Beacon identifier
  */
 router.get('/send/:beacon', (req, res, next) => {
-  const startTime = start = process.hrtime()
+  const startTime = process.hrtime()
   const getAllNodes = 'SELECT DISTINCT `code` FROM `node`'
   const getNextNode = 'SELECT `code_p1`, `code_p2` FROM `route` WHERE `code_p1` = ? OR `code_p2` = ?'
   const getSafePlace = 'SELECT DISTINCT `code` FROM `node` WHERE `secure` = 1'
@@ -48,7 +48,7 @@ router.get('/send/:beacon', (req, res, next) => {
 
       let shortestPath
       let findShortest = Number.MAX_SAFE_INTEGER
-      
+
       safePlace.forEach(safe => {
         let dijkstraRes = route.path(beaconId, safe.code, { cost: true })
         if (dijkstraRes.cost < findShortest) {
@@ -64,7 +64,7 @@ router.get('/send/:beacon', (req, res, next) => {
         status: (shortestPath.path === null) ? 0 : 1,
         message: (shortestPath.path === null) ? 'Safe place or incorrect Beacon ID' : null,
         results: (shortestPath.path === null) ? {} : shortestPath,
-        time: prettyTime(process.hrtime(start))
+        time: prettyTime(process.hrtime(startTime))
       })
     })
 })
