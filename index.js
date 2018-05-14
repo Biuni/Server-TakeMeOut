@@ -1,6 +1,6 @@
 const express = require('express')
 const bodyParser = require('body-parser')
-const ip = require('ip').address()
+const ip = require('./config/ip').address()
 const global = require('./config/global')
 
 const app = express()
