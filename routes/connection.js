@@ -21,7 +21,7 @@ router.get('/info', (req, res, next) => {
 })
 
 /**
- * @api - {GET} - /conn/data - Download the last version of database
+ * @api - {GET} - /conn/data - Download the latest version of database
  * @apiName - DataConnection
  * @apiGroup - Connection
  */

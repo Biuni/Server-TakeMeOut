@@ -64,7 +64,7 @@ router.get('/send/:beacon', (req, res, next) => {
         status: (shortestPath.path === null) ? 0 : 1,
         message: (shortestPath.path === null) ? 'Safe place or incorrect Beacon ID' : null,
         results: (shortestPath.path === null) ? {} : shortestPath,
-        time: prettyTime(process.hrtime(startTime))
+        time: (shortestPath.path === null) ? null : prettyTime(process.hrtime(startTime))
       })
     })
 })

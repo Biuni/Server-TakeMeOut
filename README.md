@@ -1,8 +1,9 @@
 # Server-TakeMeOut
-![https://david-dm.org/Biuni/Server-TakeMeOut/status.svg](https://david-dm.org/Biuni/Server-TakeMeOut/status.svg)
-![https://david-dm.org/Biuni/Server-TakeMeOut/dev-status.svg](https://david-dm.org/Biuni/Server-TakeMeOut/dev-status.svg)
+[![Dependencies](https://david-dm.org/Biuni/Server-TakeMeOut/status.svg)](https://david-dm.org/Biuni/Server-TakeMeOut)
+[![devDependencies](https://david-dm.org/Biuni/Server-TakeMeOut/dev-status.svg)](https://david-dm.org/Biuni/Server-TakeMeOut?type=dev)
 
-RESTful API used by TakeMeOut application.
+RESTful API used by [TakeMeOut application](https://github.com/Biuni/App-TakeMeOut).
+> TakeMeOut is the final project developed during the course of Software Engineering and Computer Security at UnivPM. This app was created under the supervision of Gabriele Bernardini, Silvia Santarelli and Luca Spalazzi and was born from their idea.
 
 ## Install the server
 
