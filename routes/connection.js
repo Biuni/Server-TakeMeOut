@@ -1,7 +1,7 @@
 const express = require('express')
-const db = require('../config/db')
-const promisify = require('../config/promisify')
-const global = require('../config/global')
+const db = require('../utils/db')
+const promisify = require('../utils/promisify')
+const global = require('../utils/global')
 
 const router = express.Router()
 

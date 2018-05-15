@@ -3,7 +3,7 @@
 [![devDependencies](https://david-dm.org/Biuni/Server-TakeMeOut/dev-status.svg)](https://david-dm.org/Biuni/Server-TakeMeOut?type=dev)
 
 RESTful API used by [TakeMeOut application](https://github.com/Biuni/App-TakeMeOut).
-> TakeMeOut is the final project developed during the course of Software Engineering and Computer Security at UnivPM. This app was created under the supervision of Gabriele Bernardini, Silvia Santarelli and Luca Spalazzi and was born from their idea.
+> TakeMeOut is the final project developed during the course of Software Engineering and CyberSecurity at UnivPM. This app was created under the supervision of Gabriele Bernardini, Silvia Santarelli and Luca Spalazzi and was born from their idea.
 
 ## Install the server
 
@@ -20,7 +20,7 @@ RESTful API used by [TakeMeOut application](https://github.com/Biuni/App-TakeMeO
     ```
   - Now the server is online on your local network interface on port 3000 (e.g: `192.168.1.8:3000`) and it's visible by all devices connected on the LAN.
 
-  *INFO: The server needs a mysql database. You can request a copy of it by contact one of the contributors. The connection variables are in `./config/global.js`*
+  *INFO: The server needs a mysql database. You can request a copy of it by contact one of the contributors. The connection variables are in `./utils/global.js`*
 
 ## Authors
   - Gianluca Bonifazi

@@ -1,7 +1,7 @@
 const express = require('express')
 const bodyParser = require('body-parser')
-const ip = require('./config/ip').address()
-const global = require('./config/global')
+const ip = require('./utils/ip').address()
+const global = require('./utils/global')
 
 const app = express()
 const port = global.PORT || 3000

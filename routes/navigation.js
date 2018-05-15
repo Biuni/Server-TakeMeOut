@@ -2,7 +2,7 @@ const express = require('express')
 const Graph = require('node-dijkstra')
 const Promise = require('bluebird')
 const prettyTime = require('pretty-hrtime')
-const promisify = require('../config/promisify')
+const promisify = require('../utils/promisify')
 
 const router = express.Router()
 const graph = new Map()

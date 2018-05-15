@@ -1,7 +1,7 @@
 const uuid = require('uuid/v1')
 const crypto = require('crypto')
 const express = require('express')
-const db = require('../config/db')
+const db = require('../utils/db')
 
 const router = express.Router()
 
