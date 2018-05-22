@@ -3,6 +3,8 @@ const Graph = require('node-dijkstra')
 const Promise = require('bluebird')
 const prettyTime = require('pretty-hrtime')
 const promisify = require('../utils/promisify')
+const isEmergency = require('../utils/emergency')
+const weight = require('../utils/weigth')
 
 const router = express.Router()
 const graph = new Map()
@@ -16,9 +18,16 @@ const graph = new Map()
  */
 router.get('/send/:beacon', (req, res, next) => {
   const startTime = process.hrtime()
+  const beaconId = req.params.beacon
   const getAllNodes = 'SELECT DISTINCT `code` FROM `node`'
   const getNextNode = 'SELECT `code_p1`, `code_p2` FROM `route` WHERE `code_p1` = ? OR `code_p2` = ?'
   const getSafePlace = 'SELECT DISTINCT `code` FROM `node` WHERE `secure` = 1'
+  const getNodeBeacon = 'SELECT `code` FROM `node` WHERE `beacon` = ?'
+  const updateCounter = 'UPDATE `route` SET `people` = `people` + 1 WHERE (`code_p1` = ? AND `code_p2` = ?) OR (`code_p1` = ? AND `code_p2` = ?)'
+
+  let safePlace = null
+  let shortestPath = null
+  let findShortest = Number.MAX_SAFE_INTEGER
 
   Promise.map(promisify.query(getAllNodes), node => {
     return Promise.all([
@@ -28,10 +37,10 @@ router.get('/send/:beacon', (req, res, next) => {
             let newNodeGraph = new Map()
             nextNode.forEach(next => {
               if (next.code_p1 !== node.code) {
-                newNodeGraph.set(next.code_p1, 1)
+                newNodeGraph.set(next.code_p1, weight())
               }
               if (next.code_p2 !== node.code) {
-                newNodeGraph.set(next.code_p2, 1)
+                newNodeGraph.set(next.code_p2, weight())
               }
             })
             graph.set(node.code, newNodeGraph)
@@ -42,15 +51,16 @@ router.get('/send/:beacon', (req, res, next) => {
     .then(() => {
       return promisify.query(getSafePlace)
     })
-    .then(safePlace => {
+    .then(safeNodes => {
+      safePlace = safeNodes
+      return promisify.query(getNodeBeacon, [beaconId])
+    })
+    .then(nodeId => {
       const route = new Graph(graph)
-      const beaconId = req.params.beacon
-
-      let shortestPath
-      let findShortest = Number.MAX_SAFE_INTEGER
+      const node = (nodeId.length > 0) ? nodeId[0].code : 0
 
       safePlace.forEach(safe => {
-        let dijkstraRes = route.path(beaconId, safe.code, { cost: true })
+        let dijkstraRes = route.path(node, safe.code, { cost: true })
         if (dijkstraRes.cost < findShortest) {
           findShortest = dijkstraRes.cost
           shortestPath = dijkstraRes
@@ -65,6 +75,15 @@ router.get('/send/:beacon', (req, res, next) => {
         message: (shortestPath.path === null) ? 'Safe place or incorrect Beacon ID' : null,
         results: (shortestPath.path === null) ? {} : shortestPath,
         time: (shortestPath.path === null) ? null : prettyTime(process.hrtime(startTime))
+      })
+
+      return shortestPath
+    })
+    .then(shortestPath => {
+      isEmergency().then(status => {
+        if (shortestPath.path !== null && status[0].emergency === 1) {
+          promisify.query(updateCounter, [shortestPath.path[0], shortestPath.path[1], shortestPath.path[1], shortestPath.path[0]])
+        }
       })
     })
 })
