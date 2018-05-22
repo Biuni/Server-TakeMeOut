@@ -27,9 +27,13 @@
   "dependencies": {
     "bluebird": "^3.5.1",
     "body-parser": "^1.18.2",
+    "connect-ensure-login": "^0.1.1",
     "express": "^4.16.3",
+    "express-session": "^1.15.6",
     "mysql": "^2.15.0",
     "node-dijkstra": "^2.5.0",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
     "pretty-hrtime": "^1.0.3",
     "uuid": "^3.2.1"
   },
@@ -46,6 +50,11 @@
       "pre-commit": "yarn test",
       "pre-push": "yarn test"
     }
+  },
+  "standard": {
+    "ignore": [
+      "/static/**/*.js"
+    ]
   },
   "engines": {
     "node": ">=6.5.0"
