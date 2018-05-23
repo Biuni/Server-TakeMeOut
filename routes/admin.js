@@ -1,15 +1,16 @@
 const express = require('express')
-const path = require('path')
 const ensureLogin = require('connect-ensure-login').ensureLoggedIn('/admin/login')
 const passport = require('../utils/auth')
 const router = express.Router()
 
 router.get('/', ensureLogin, (req, res) => {
-  res.sendFile('index.html', { root: path.join(__dirname, '/../view') })
+  res.render('../view/admin', {
+    emergencyStatus: false
+  })
 })
 
 router.get('/login', (req, res) => {
-  res.sendFile('login.html', { root: path.join(__dirname, '/../view') })
+  res.render('../view/login', { layout: false })
 })
 
 router.post('/login', passport.authenticate('local', { failureRedirect: '/admin/login' }), (req, res) => {

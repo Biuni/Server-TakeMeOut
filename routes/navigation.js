@@ -4,7 +4,7 @@ const Promise = require('bluebird')
 const prettyTime = require('pretty-hrtime')
 const promisify = require('../utils/promisify')
 const isEmergency = require('../utils/emergency')
-const weight = require('../utils/weigth')
+const weight = require('../utils/weight')
 
 const router = express.Router()
 const graph = new Map()
@@ -20,7 +20,7 @@ router.get('/send/:beacon', (req, res, next) => {
   const startTime = process.hrtime()
   const beaconId = req.params.beacon
   const getAllNodes = 'SELECT DISTINCT `code` FROM `node`'
-  const getNextNode = 'SELECT `code_p1`, `code_p2` FROM `route` WHERE `code_p1` = ? OR `code_p2` = ?'
+  const getNextNode = 'SELECT * FROM `route` WHERE `code_p1` = ? OR `code_p2` = ?'
   const getSafePlace = 'SELECT DISTINCT `code` FROM `node` WHERE `secure` = 1'
   const getNodeBeacon = 'SELECT `code` FROM `node` WHERE `beacon` = ?'
   const updateCounter = 'UPDATE `route` SET `people` = `people` + 1 WHERE (`code_p1` = ? AND `code_p2` = ?) OR (`code_p1` = ? AND `code_p2` = ?)'
@@ -37,10 +37,16 @@ router.get('/send/:beacon', (req, res, next) => {
             let newNodeGraph = new Map()
             nextNode.forEach(next => {
               if (next.code_p1 !== node.code) {
-                newNodeGraph.set(next.code_p1, weight())
+                newNodeGraph.set(
+                  next.code_p1,
+                  weight(next.people, next.LOS, next.V, next.R, next.K, next.L, next.pv, next.pr, next.pk, next.pl)
+                )
               }
               if (next.code_p2 !== node.code) {
-                newNodeGraph.set(next.code_p2, weight())
+                newNodeGraph.set(
+                  next.code_p2,
+                  weight(next.people, next.LOS, next.V, next.R, next.K, next.L, next.pv, next.pr, next.pk, next.pl)
+                )
               }
             })
             graph.set(node.code, newNodeGraph)
