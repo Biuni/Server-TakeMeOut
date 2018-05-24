@@ -3,94 +3,230 @@
 
     {{> header this }}
 
-      <div class="my-3 my-md-5">
-        <div class="container">
-          <div class="page-header">
-            <h1 class="page-title">
-              Stats
-            </h1>
-          </div>
-          
-          {{#if emergencyStatus}}
-          <div class="alert alert-icon alert-danger" role="alert">
-            <i class="fe fe-alert-triangle mr-2" aria-hidden="true"></i> <strong>Warning! The system is in emergency status.</strong> Click on the upper right button to disable it.
-          </div>
-          {{/if}} 
+    <div class="my-3 my-md-5">
+      <div class="container">
+        <div class="page-header">
+          <h1 class="page-title">
+            Stats
+          </h1>
+        </div>
 
-            <div class="row">
-              <div class="col-sm-6 col-lg-3">
-                <div class="card p-3">
-                  <div class="d-flex align-items-center">
-                    <span class="stamp stamp-md bg-blue mr-3">
-                      <i class="fe fe-box"></i>
-                    </span>
-                    <div>
-                      <h4 class="m-0">
-                        <a href="javascript:void(0)">65
-                          <small>Nodes</small>
-                        </a>
-                      </h4>
-                      <small class="text-muted">Active node with a beacon</small>
-                    </div>
-                  </div>
+        {{#if emergencyStatus}}
+        <div class="alert alert-icon alert-danger" role="alert">
+          <i class="fe fe-alert-triangle mr-2" aria-hidden="true"></i>
+          <strong>Warning! The system is in emergency status.</strong> Click on the upper right button to disable it.
+        </div>
+        {{/if}}
+
+        <div class="row">
+          <div class="col-sm-6 col-lg-3">
+            <div class="card p-3">
+              <div class="d-flex align-items-center">
+                <span class="stamp stamp-md bg-blue mr-3">
+                  <i class="fe fe-box"></i>
+                </span>
+                <div>
+                  <h4 class="m-0">
+                    <a href="javascript:void(0)">{{nodes}}
+                      <small>Nodes</small>
+                    </a>
+                  </h4>
+                  <small class="text-muted">Active node with a beacon</small>
                 </div>
               </div>
-              <div class="col-sm-6 col-lg-3">
-                <div class="card p-3">
-                  <div class="d-flex align-items-center">
-                    <span class="stamp stamp-md bg-green mr-3">
-                      <i class="fe fe-corner-down-right"></i>
-                    </span>
-                    <div>
-                      <h4 class="m-0">
-                        <a href="javascript:void(0)">75
-                          <small>Routes</small>
-                        </a>
-                      </h4>
-                      <small class="text-muted">Valid routes</small>
-                    </div>
-                  </div>
+            </div><!-- /card -->
+          </div>
+          <div class="col-sm-6 col-lg-3">
+            <div class="card p-3">
+              <div class="d-flex align-items-center">
+                <span class="stamp stamp-md bg-green mr-3">
+                  <i class="fe fe-corner-down-right"></i>
+                </span>
+                <div>
+                  <h4 class="m-0">
+                    <a href="javascript:void(0)">{{routes}}
+                      <small>Routes</small>
+                    </a>
+                  </h4>
+                  <small class="text-muted">Valid routes</small>
                 </div>
               </div>
-              <div class="col-sm-6 col-lg-3">
-                <div class="card p-3">
-                  <div class="d-flex align-items-center">
-                    <span class="stamp stamp-md bg-yellow mr-3">
-                      <i class="fe fe-users"></i>
-                    </span>
-                    <div>
-                      <h4 class="m-0">
-                        <a href="javascript:void(0)">11
-                          <small>Members</small>
-                        </a>
-                      </h4>
-                      <small class="text-muted">User registered in the database</small>
-                    </div>
-                  </div>
+            </div><!-- /card -->
+          </div>
+          <div class="col-sm-6 col-lg-3">
+            <div class="card p-3">
+              <div class="d-flex align-items-center">
+                <span class="stamp stamp-md bg-yellow mr-3">
+                  <i class="fe fe-users"></i>
+                </span>
+                <div>
+                  <h4 class="m-0">
+                    <a href="javascript:void(0)">{{users}}
+                      <small>Members</small>
+                    </a>
+                  </h4>
+                  <small class="text-muted">User registered in the database</small>
                 </div>
               </div>
-              <div class="col-sm-6 col-lg-3">
-                <div class="card p-3">
-                  <div class="d-flex align-items-center">
-                    <span class="stamp stamp-md bg-red mr-3">
-                      <i class="fe fe-alert-triangle"></i>
-                    </span>
-                    <div>
-                      <h4 class="m-0">
-                        <a href="javascript:void(0)">5
-                          <small>Emergency</small>
-                        </a>
-                      </h4>
-                      <small class="text-muted">Total number of emergency</small>
-                    </div>
-                  </div>
+            </div><!-- /card -->
+          </div>
+          <div class="col-sm-6 col-lg-3">
+            <div class="card p-3">
+              <div class="d-flex align-items-center">
+                <span class="stamp stamp-md bg-red mr-3">
+                  <i class="fe fe-alert-triangle"></i>
+                </span>
+                <div>
+                  <h4 class="m-0">
+                    <a href="javascript:void(0)">{{emergency}}
+                      <small>Emergency</small>
+                    </a>
+                  </h4>
+                  <small class="text-muted">Total number of emergency</small>
                 </div>
               </div>
-            </div><!-- /row -->
-          </div><!-- /container -->
-        </div><!-- /margin -->
-  </div>
+            </div><!-- /card -->
+          </div>
+        </div><!-- /row -->
+        <!-- Emergency graph -->
+        <div class="row">
+          <div class="col-lg-8">
+            <div class="card" style="max-height: 30rem">
+              <div class="card-header">
+                <h3 class="card-title">Emergency last year</h3>
+              </div>
+              <div id="chart-emergency-activity" style="height: 10rem"></div>
+              <div class="table-responsive">
+                <table class="table card-table table-striped table-vcenter">
+                  <thead>
+                    <tr>
+                      <th>Time</th>
+                      <th>Day</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  {{#lastEmergency}}
+                    <tr>
+                      <td>{{getTime time}}</td>
+                      <td class="text-nowrap">{{getDate time}}</td>
+                    </tr>
+                  {{/lastEmergency}}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <script>
+              var parseData = '{{getEmergencyGraph emergencyGraph}}'.split(',')
+              require(['c3', 'jquery'], function (c3, $) {
+                $(document).ready(function () {
+                  var chart = c3.generate({
+                    bindto: '#chart-emergency-activity',
+                    data: {
+                      columns: [
+                        parseData
+                      ],
+                      type: 'area',
+                      groups: [
+                        ['data1', 'data2', 'data3']
+                      ],
+                      colors: {
+                        'data1': tabler.colors["red"]
+                      },
+                      names: {
+                        'data1': 'Emergency'
+                      }
+                    },
+                    axis: {
+                      y: {
+                        padding: {
+                          bottom: 0,
+                        },
+                        show: false,
+                        tick: {
+                          outer: false
+                        }
+                      },
+                      x: {
+                        padding: {
+                          left: 0,
+                          right: 0
+                        },
+                        show: false
+                      }
+                    },
+                    legend: {
+                      position: 'inset',
+                      padding: 0,
+                      inset: {
+                        anchor: 'top-left',
+                        x: 20,
+                        y: 8,
+                        step: 10
+                      }
+                    },
+                    tooltip: {
+                      format: {
+                        title: function (x) {
+                          return '';
+                        }
+                      }
+                    },
+                    padding: {
+                      bottom: 0,
+                      left: -1,
+                      right: -1
+                    },
+                    point: {
+                      show: false
+                    }
+                  });
+                });
+              });
+            </script>
+          </div><!-- /col-lg-8 -->
+          <div class="col-lg-4">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Last 5 members</h3>
+              </div>
+              <div class="card-body o-auto" style="height: 20rem">
+                <ul class="list-unstyled list-separated">
+                  {{#lastMember}}
+                    <li class="list-separated-item">
+                      <div class="row align-items-center">
+                        <div class="col-auto">
+                          <span class="avatar">{{getInitials name}}</span>
+                        </div>
+                        <div class="col">
+                          <div>
+                            <a href="javascript:void(0)" class="text-inherit">{{name}}</a>
+                          </div>
+                          <small class="d-block item-except text-sm text-muted h-1x">{{mail}}</small>
+                        </div>
+                        <div class="col-auto">
+                          <div class="item-action dropdown">
+                            <a href="javascript:void(0)" data-toggle="dropdown" class="icon">
+                              <i class="fe fe-more-vertical"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right">
+                              <a href="/admin/delete-user/{{id}}" class="dropdown-item">
+                                <i class="dropdown-icon fe fe-trash-2"></i> Remove
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                  {{/lastMember}}
+                </ul>
+              </div><!-- /card-body -->
+            </div><!-- /card -->
+          </div><!-- /col-lg-4 -->
+        </div><!-- /row -->
+      </div><!-- /container -->
+    </div><!-- /margin -->
+  </div><!-- /page-main -->
 
   {{> footer }}
-  
-</div>
+
+</div><!-- /page -->

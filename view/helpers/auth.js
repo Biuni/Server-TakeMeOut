@@ -1,7 +1,7 @@
 const passport = require('passport')
 const Strategy = require('passport-local').Strategy
 const crypto = require('crypto')
-const db = require('./db')
+const db = require('../../utils/db')
 
 passport.use(new Strategy((username, password, cb) => {
   db.query('SELECT `uuid`, `name`, `password` FROM `user` WHERE `id` = 1', (error, results, fields) => {

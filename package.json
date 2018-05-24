@@ -54,7 +54,7 @@
   },
   "standard": {
     "ignore": [
-      "/static/**/*.js"
+      "/view/static/**/*.js"
     ]
   },
   "engines": {
