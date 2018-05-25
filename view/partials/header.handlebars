@@ -46,7 +46,7 @@
       <div class="col-lg order-lg-first">
         <ul class="nav nav-tabs border-0 flex-column flex-lg-row">
           <li class="nav-item">
-            <a href="/admin" class="nav-link active">
+            <a href="/admin" class="nav-link">
               <i class="fe fe-activity"></i> Stats</a>
           </li>
           <li class="nav-item">
@@ -77,3 +77,12 @@
     </div>
   </div>
 </div>
+
+  {{#if emergencyStatus}}
+  <div class="container mt-5">
+    <div class="alert alert-icon alert-danger" role="alert">
+      <i class="fe fe-alert-triangle mr-2" aria-hidden="true"></i>
+      <strong>Warning! The system is in emergency status.</strong> Click on the upper right button to disable it.
+    </div>
+  </div>
+  {{/if}}

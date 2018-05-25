@@ -11,9 +11,51 @@
           </h1>
         </div>
 
-        Lorem Ipsum
-
-      </div>
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Nodes details</h3>
+              </div>
+              <div class="table-responsive">
+                <table class="table card-table table-vcenter text-nowrap">
+                  <thead>
+                    <tr>
+                      <th><span title="Code identifier" data-toggle="tooltip">Code</span></th>
+                      <th><span title="Associated Beacon" data-toggle="tooltip">Beacon</span></th>
+                      <th><span title="X coordinate" data-toggle="tooltip">X</span></th>
+                      <th><span title="Y coordinate" data-toggle="tooltip">Y</span></th>
+                      <th><span title="Node floor" data-toggle="tooltip">Altitude</span></th>
+                      <th><span title="Node width" data-toggle="tooltip">Width</span></th>
+                      <th><span title="Node associated to safe place" data-toggle="tooltip">Secure</span></th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {{#nodes}}
+                    <tr>
+                      <td>{{code}}</td>
+                      <td>{{beacon}}</td>
+                      <td>{{x}}</td>
+                      <td>{{y}}</td>
+                      <td>{{altitude}}</td>
+                      <td>{{width}}</td>
+                      <td><span class="status-icon bg-{{safePlace secure}}"></span></td>
+                      <td>
+                        <a class="icon" href="/admin/mod-node?id={{id}}" title="Modify node">
+                          <i class="fe fe-edit"></i>
+                        </a>
+                      </td>
+                    </tr>
+                    {{/nodes}}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div><!-- /row -->
+        
+      </div><!-- /container -->
     </div><!-- /margin -->
   </div><!-- /page-main -->
 

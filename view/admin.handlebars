@@ -11,13 +11,6 @@
           </h1>
         </div>
 
-        {{#if emergencyStatus}}
-        <div class="alert alert-icon alert-danger" role="alert">
-          <i class="fe fe-alert-triangle mr-2" aria-hidden="true"></i>
-          <strong>Warning! The system is in emergency status.</strong> Click on the upper right button to disable it.
-        </div>
-        {{/if}}
-
         <div class="row">
           <div class="col-sm-6 col-lg-3">
             <div class="card p-3">
@@ -27,7 +20,7 @@
                 </span>
                 <div>
                   <h4 class="m-0">
-                    <a href="javascript:void(0)">{{nodes}}
+                    <a href="/admin/view-nodes">{{nodes}}
                       <small>Nodes</small>
                     </a>
                   </h4>
@@ -44,7 +37,7 @@
                 </span>
                 <div>
                   <h4 class="m-0">
-                    <a href="javascript:void(0)">{{routes}}
+                    <a href="/admin/view-routes">{{routes}}
                       <small>Routes</small>
                     </a>
                   </h4>
@@ -61,7 +54,7 @@
                 </span>
                 <div>
                   <h4 class="m-0">
-                    <a href="javascript:void(0)">{{users}}
+                    <a href="/admin/view-users">{{users}}
                       <small>Members</small>
                     </a>
                   </h4>
@@ -82,7 +75,7 @@
                       <small>Emergency</small>
                     </a>
                   </h4>
-                  <small class="text-muted">Total number of emergency</small>
+                  <small class="text-muted">Total number of emergencies</small>
                 </div>
               </div>
             </div><!-- /card -->
@@ -93,7 +86,7 @@
           <div class="col-lg-8">
             <div class="card" style="max-height: 30rem">
               <div class="card-header">
-                <h3 class="card-title">Emergency last year</h3>
+                <h3 class="card-title">Emergencies last year</h3>
               </div>
               <div id="chart-emergency-activity" style="height: 10rem"></div>
               <div class="table-responsive">

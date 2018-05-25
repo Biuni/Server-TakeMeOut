@@ -1,15 +1,17 @@
-const getInitials = (name) => name.split(' ').map((n) => n[0]).join('')
+const moment = require('moment')
 
-const getTime = (date) => date.split(' ')[1]
+const getInitials = (name) => name.split(' ').map((n) => n[0]).join('').toUpperCase()
 
-const getDate = (date) => date.split(' ')[0]
+const getTime = (date) => moment(date).format('HH:mm')
+
+const getDate = (date) => moment(date).format('DD-MM-YYYY')
 
 const getEmergencyGraph = (dates) => {
   const allEmergency = JSON.parse(dates)
   let allMonth = []
 
   allEmergency.forEach(element => {
-    allMonth.push(element.time.split(' ')[0].split('-')[1])
+    allMonth.push(moment(element.time).format('MM'))
   })
 
   return [
@@ -29,9 +31,19 @@ const getEmergencyGraph = (dates) => {
   ]
 }
 
+const formatDate = (date) => {
+  return moment(date).format('DD-MM-YYYY / HH:mm')
+}
+
+const safePlace = (value) => {
+  return (value === 1) ? 'success' : 'warning'
+}
+
 module.exports = {
   getInitials,
   getTime,
   getDate,
-  getEmergencyGraph
+  getEmergencyGraph,
+  formatDate,
+  safePlace
 }
