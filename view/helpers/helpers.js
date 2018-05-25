@@ -39,11 +39,14 @@ const safePlace = (value) => {
   return (value === 1) ? 'success' : 'warning'
 }
 
+const switchOn = (safe) => (safe === 1) ? 'checked' : ''
+
 module.exports = {
   getInitials,
   getTime,
   getDate,
   getEmergencyGraph,
   formatDate,
-  safePlace
+  safePlace,
+  switchOn
 }

@@ -11,7 +11,101 @@
           </h1>
         </div>
 
-        Lorem Ipsum
+        {{#result.display}}
+          {{#if result.save}}
+            <div class="alert alert-success alert-dismissible" role="alert">
+              <button data-dismiss="alert" class="close"></button>
+              Route updated!
+            </div>
+          {{else}}
+            <div class="alert alert-danger alert-dismissible" role="alert">
+              <button data-dismiss="alert" class="close"></button>
+              Error! Try again.
+            </div>
+          {{/if}}
+        {{/result.display}}
+
+        <form class="card" action="/admin/mod-route" method="POST">
+          <input type="hidden" value="{{route.id}}" name="id">
+          <div class="card-body">
+            <h3 class="card-title">Insert route information</h3>
+            <div class="row">
+              <div class="col-md-6 col-sm-6">
+                <div class="form-group">
+                  <label class="form-label">Start Node</label>
+                  <input type="text" class="form-control" name="code_p1" placeholder="The P1 node" value="{{route.code_p1}}">
+                </div>
+              </div>
+              <div class="col-md-6 col-sm-6">
+                <div class="form-group">
+                  <label class="form-label">Arrive Node</label>
+                  <input type="text" class="form-control" name="code_p2" placeholder="The P2 node" value="{{route.code_p2}}">
+                </div>
+              </div>
+            </div><!-- /row -->
+            <div class="row">
+              <div class="col-md-2 offset-md-1">
+                <div class="form-group">
+                  <label class="form-label">LOS</label>
+                  <input type="text" class="form-control" name="LOS" placeholder="Max number of people" value="{{route.LOS}}">
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group">
+                  <label class="form-label">V</label>
+                  <input type="text" class="form-control" name="V" placeholder="V" value="{{route.V}}">
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group">
+                  <label class="form-label">R</label>
+                  <input type="text" class="form-control" name="R" placeholder="R" value="{{route.R}}">
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group">
+                  <label class="form-label">K</label>
+                  <input type="text" class="form-control" name="K" placeholder="K" value="{{route.K}}">
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group">
+                  <label class="form-label">L</label>
+                  <input type="text" class="form-control" name="L" placeholder="The route length" value="{{route.L}}">
+                </div>
+              </div>
+            </div><!-- /row -->
+            <div class="row">
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label class="form-label">PV</label>
+                  <input type="text" class="form-control" name="pv" placeholder="PV" value="{{route.pv}}">
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label class="form-label">PR</label>
+                  <input type="text" class="form-control" name="pr" placeholder="PR" value="{{route.pr}}">
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label class="form-label">PK</label>
+                  <input type="text" class="form-control" name="pk" placeholder="PK" value="{{route.pk}}">
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label class="form-label">PL</label>
+                  <input type="text" class="form-control" name="pl" placeholder="PL" value="{{route.pl}}">
+                </div>
+              </div>
+            </div><!-- /row -->
+          </div>
+          <div class="card-footer text-right">
+            <button type="submit" class="btn btn-azure">Update route</button>
+          </div>
+        </form>
 
       </div>
     </div><!-- /margin -->

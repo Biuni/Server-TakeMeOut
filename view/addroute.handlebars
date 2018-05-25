@@ -11,7 +11,100 @@
           </h1>
         </div>
 
-        Lorem Ipsum
+        {{#result.display}}
+          {{#if result.save}}
+            <div class="alert alert-success alert-dismissible" role="alert">
+              <button data-dismiss="alert" class="close"></button>
+              Route added!
+            </div>
+          {{else}}
+            <div class="alert alert-danger alert-dismissible" role="alert">
+              <button data-dismiss="alert" class="close"></button>
+              Error! Try again.
+            </div>
+          {{/if}}
+        {{/result.display}}
+
+        <form class="card" action="/admin/add-route" method="POST">
+          <div class="card-body">
+            <h3 class="card-title">Insert route information</h3>
+            <div class="row">
+              <div class="col-md-6 col-sm-6">
+                <div class="form-group">
+                  <label class="form-label">Start Node</label>
+                  <input type="text" class="form-control" name="code_p1" placeholder="The P1 node">
+                </div>
+              </div>
+              <div class="col-md-6 col-sm-6">
+                <div class="form-group">
+                  <label class="form-label">Arrive Node</label>
+                  <input type="text" class="form-control" name="code_p2" placeholder="The P2 node">
+                </div>
+              </div>
+            </div><!-- /row -->
+            <div class="row">
+              <div class="col-md-2 offset-md-1">
+                <div class="form-group">
+                  <label class="form-label">LOS</label>
+                  <input type="text" class="form-control" name="LOS" placeholder="Max number of people">
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group">
+                  <label class="form-label">V</label>
+                  <input type="text" class="form-control" name="V" placeholder="V">
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group">
+                  <label class="form-label">R</label>
+                  <input type="text" class="form-control" name="R" placeholder="R">
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group">
+                  <label class="form-label">K</label>
+                  <input type="text" class="form-control" name="K" placeholder="K">
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group">
+                  <label class="form-label">L</label>
+                  <input type="text" class="form-control" name="L" placeholder="The route length">
+                </div>
+              </div>
+            </div><!-- /row -->
+            <div class="row">
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label class="form-label">PV</label>
+                  <input type="text" class="form-control" name="pv" placeholder="PV">
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label class="form-label">PR</label>
+                  <input type="text" class="form-control" name="pr" placeholder="PR">
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label class="form-label">PK</label>
+                  <input type="text" class="form-control" name="pk" placeholder="PK">
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label class="form-label">PL</label>
+                  <input type="text" class="form-control" name="pl" placeholder="PL">
+                </div>
+              </div>
+            </div><!-- /row -->
+          </div>
+          <div class="card-footer text-right">
+            <button type="submit" class="btn btn-azure">Save new route</button>
+          </div>
+        </form>
 
       </div>
     </div><!-- /margin -->

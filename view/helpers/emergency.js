@@ -9,10 +9,15 @@ const setEmergency = () => promisify.query('INSERT INTO `status`(`emergency`, `t
 const stopEmergency = () => promisify.query('INSERT INTO `status`(`emergency`, `time`) VALUES (?,?)', [0, new Date()])
 
 const resetPeopleRecord = () => {
-  resetCron = setInterval(() => console.log('Reset people =>', new Date()), 1000)
+  resetCron = setInterval(() => {
+    promisify.query('UPDATE `route` SET `people`= 0')
+  }, 30000)
 }
 
-const stopResetPeople = () => clearInterval(resetCron)
+const stopResetPeople = () => {
+  clearInterval(resetCron)
+  promisify.query('UPDATE `route` SET `people`= 0')
+}
 
 module.exports = {
   isEmergency,

@@ -55,6 +55,10 @@
                         <a class="icon" href="/admin/mod-route?id={{id}}" title="Modify route">
                           <i class="fe fe-edit"></i>
                         </a>
+                        &nbsp;&nbsp;
+                        <a class="icon" href="/admin/delete-route/{{id}}" title="Remove route" onclick="return confirm('Are you sure?')">
+                          <i class="fe fe-trash-2"></i>
+                        </a>
                       </td>
                     </tr>
                     {{/routes}}

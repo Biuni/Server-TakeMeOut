@@ -11,7 +11,79 @@
           </h1>
         </div>
 
-        Lorem Ipsum
+        {{#result.display}}
+          {{#if result.save}}
+            <div class="alert alert-success alert-dismissible" role="alert">
+              <button data-dismiss="alert" class="close"></button>
+              Node updated!
+            </div>
+          {{else}}
+            <div class="alert alert-danger alert-dismissible" role="alert">
+              <button data-dismiss="alert" class="close"></button>
+              Error! Try again.
+            </div>
+          {{/if}}
+        {{/result.display}}
+
+        <form class="card" action="/admin/mod-node" method="POST">
+          <input type="hidden" value="{{node.id}}" name="id">
+          <div class="card-body">
+            <h3 class="card-title">Update node information</h3>
+            <div class="row">
+              <div class="col-md-4 col-sm-4">
+                <div class="form-group">
+                  <label class="form-label">Code</label>
+                  <input type="text" class="form-control" name="code" placeholder="The node identifier" value="{{node.code}}">
+                </div>
+              </div>
+              <div class="col-md-4 col-sm-4">
+                <div class="form-group">
+                  <label class="form-label">Beacon</label>
+                  <input type="text" class="form-control" name="beacon" placeholder="The beacon MAC address" value="{{node.beacon}}">
+                </div>
+              </div>
+              <div class="col-sm-4 col-md-4">
+                <div class="form-group">
+                  <label class="form-label mb-3">Secure place</label>
+                  <label class="custom-switch">
+                    <input type="checkbox" name="secure" class="custom-switch-input" {{switchOn node.secure}}>
+                    <span class="custom-switch-indicator"></span>
+                    <span class="custom-switch-description">Switch on for secure place</span>
+                  </label>
+                </div>
+              </div>
+            </div><!-- /row -->
+            <div class="row">
+              <div class="col-md-3 col-sm-3">
+                <div class="form-group">
+                  <label class="form-label">X</label>
+                  <input type="text" class="form-control" name="x" placeholder="X coordinate" value="{{node.x}}">
+                </div>
+              </div>
+              <div class="col-md-3 col-sm-3">
+                <div class="form-group">
+                  <label class="form-label">Y</label>
+                  <input type="text" class="form-control" name="y" placeholder="Y coordinate" value="{{node.y}}">
+                </div>
+              </div>
+              <div class="col-sm-3 col-md-3">
+                <div class="form-group">
+                  <label class="form-label">Altitude</label>
+                  <input type="text" class="form-control" name="altitude" placeholder="The altitude of node" value="{{node.altitude}}">
+                </div>
+              </div>
+              <div class="col-sm-3 col-md-3">
+                <div class="form-group">
+                  <label class="form-label">Width</label>
+                  <input type="text" class="form-control" name="width" placeholder="Width of node" value="{{node.width}}">
+                </div>
+              </div>
+            </div><!-- /row -->
+          </div>
+          <div class="card-footer text-right">
+            <button type="submit" class="btn btn-azure">Update node</button>
+          </div>
+        </form>
 
       </div>
     </div><!-- /margin -->
