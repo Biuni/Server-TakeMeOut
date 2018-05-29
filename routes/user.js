@@ -13,7 +13,7 @@ const router = express.Router()
  * @apiParam - {String} uuid - Users unique ID.
  */
 router.get('/get/:uuid', (req, res, next) => {
-  db.query('SELECT `mail`, `name`, `uuid` FROM `user` WHERE `uuid` = ?', [req.params.uuid], (error, results, fields) => {
+  db.query('SELECT `mail`, `name`, `uuid` FROM `user` WHERE `uuid` = ? AND `id` <> 1', [req.params.uuid], (error, results, fields) => {
     res.json({
       status: (error || results.length === 0) ? 0 : 1,
       message: (error || results.length === 0) ? `Error. ${(error) ? error.sqlMessage : 'No user with this UUID'}` : null,

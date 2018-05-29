@@ -36,7 +36,10 @@ router.get('/', ensureLogin, (req, res) => {
 
 // Login Page
 router.get('/login', (req, res) => {
-  res.render('../view/login', { layout: false })
+  res.render('../view/login', {
+    layout: false,
+    error: req.query.err !== undefined
+  })
 })
 
 // Change Password Page
@@ -144,7 +147,7 @@ router.get('/mod-route', ensureLogin, (req, res) => {
 })
 
 // Login
-router.post('/login', passport.authenticate('local', { failureRedirect: '/admin/login' }), (req, res) => {
+router.post('/login', passport.authenticate('local', { failureRedirect: '/admin/login?err=1' }), (req, res) => {
   res.redirect('/admin')
 })
 

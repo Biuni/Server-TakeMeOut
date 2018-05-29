@@ -13,8 +13,8 @@
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="HandheldFriendly" content="True">
   <meta name="MobileOptimized" content="320">
-  <link rel="icon" href="./favicon.ico" type="image/x-icon" />
-  <link rel="shortcut icon" type="image/x-icon" href="./favicon.ico" />
+  <link rel="icon" href="../assets/favicon.ico" type="image/x-icon" />
+  <link rel="shortcut icon" type="image/x-icon" href="../assets/favicon.ico" />
   <title>Login - TakeMeOut</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i,500,500i,600,600i,700,700i&amp;subset=latin-ext">
@@ -43,13 +43,13 @@
                 <div class="card-title"><strong>TakeMeOut</strong> - Control Panel</div>
                 <div class="form-group">
                   <label class="form-label">Username</label>
-                  <input type="text" class="form-control" id="exampleInputEmail1" name="username" placeholder="Username">
+                  <input type="text" class="form-control {{#error}}state-invalid{{/error}}" id="exampleInputEmail1" name="username" placeholder="Username">
                 </div>
                 <div class="form-group">
                   <label class="form-label">
                     Password
                   </label>
-                  <input type="password" class="form-control" id="exampleInputPassword1" name="password" placeholder="Password">
+                  <input type="password" class="form-control {{#error}}state-invalid{{/error}}" id="exampleInputPassword1" name="password" placeholder="Password">
                 </div>
                 <div class="form-footer">
                   <button type="submit" class="btn btn-primary btn-block">Sign in</button>

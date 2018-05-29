@@ -5,22 +5,30 @@
 RESTful API used by [TakeMeOut application](https://github.com/Biuni/App-TakeMeOut).
 > TakeMeOut is the final project developed during the course of Software Engineering and CyberSecurity at UnivPM. This app was created under the supervision of Gabriele Bernardini, Silvia Santarelli and Luca Spalazzi and was born from their idea.
 
-## Install the server
+## Install and setup the server
 
   - Install [NodeJS](https://nodejs.org/en/) (reccomendend the last LTS version)
   - Clone this repository (requires [Git](https://git-scm.com/)) on your local machine (or download as a ZIP)
     ```sh
     $ git clone https://github.com/Biuni/Server-TakeMeOut.git
     ```
+  - The server needs a [MySQL](https://www.mysql.com/it/downloads/) database. You can request a dump of it by contact one of the authors.
+  - After receiving it you can now create the database. Import the SQL dump and set the connection variables in `./utils/global.js`
+  - Into the same file change also the *SESSION_KEY* variable with another string. **It's very important for security!**
   - Now open the command line and run the follow commands
     ```sh
     $ cd Server-TakeMeOut
     $ npm install
     $ npm start
     ```
-  - Now the server is online on your local network interface on port 3000 (e.g: `192.168.1.8:3000`) and it's visible by all devices connected on the LAN.
+  - If you read&nbsp; *"Live on ..."* &nbsp;the server is online on your local network interface on port 3000 (e.g: `192.168.1.8:3000`) and it's visible by all devices connected on the LAN.
+  - Go to `/admin/login` (e.g: `http://192.168.1.8:3000/admin/login`) and authenticate with `admin` and `secret`.
+  - Click over the Administrator icon and Change Password. Modify it with a more secure string.
+  - *All right! The server is ready to production mode.*
 
-  *INFO: The server needs a mysql database. You can request a copy of it by contact one of the contributors. The connection variables are in `./utils/global.js`*
+## Test
+If you want to check all the system you can run the unit tests. It's very easy, go on your command line, execute `npm run test` and the results will be displayed directly on the console.
+> *INFO: By executing the command `npm run test` also makes a check on the style of writing the code. For more information you can see the official website of [StandardJS](https://standardjs.com/)*
 
 ## Authors
   - Gianluca Bonifazi
