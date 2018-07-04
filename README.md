@@ -45,7 +45,9 @@ If you want to check all the system you can run the unit tests. It's very easy, 
 | `GET` | `/user/get/:uuid` | *uuid* | Get user information by uuid |
 | `POST` | `/user/register` | *mail* - *pwd* - *name* | Register a new user |
 | `POST` | `/user/login` | *mail* - *pwd* | Login an user |
+| `POST` | `/user/position` | *uuid* - *position* - *beacon_data* | Register user position |
 | `GET` | `/nav/send/:beacon` | *beacon* | Get the shortest path to safe place using beacon id |
+| `GET` | `/nav/path/:start/:end` | *start* - *end* | Get the shortest path to arrive place using the start and the end beacon id |
 
 
 [![JavaScript Style Guide](https://cdn.rawgit.com/standard/standard/master/badge.svg)](https://github.com/standard/standard)

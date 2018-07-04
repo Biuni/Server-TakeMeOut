@@ -11,7 +11,7 @@ const stopEmergency = () => promisify.query('INSERT INTO `status`(`emergency`, `
 const resetPeopleRecord = () => {
   resetCron = setInterval(() => {
     promisify.query('UPDATE `route` SET `people`= 0')
-  }, 30000)
+  }, 13000)
 }
 
 const stopResetPeople = () => {

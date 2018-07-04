@@ -85,4 +85,31 @@ router.post('/register', (req, res, next) => {
   })
 })
 
+/**
+ * @api - {POST} - /user/position - Store user position
+ * @apiName - UserPosition
+ * @apiGroup - User
+ *
+ * @apiParam - {String} position      - Beacon ID (mac address).
+ * @apiParam - {String} beacon_data   - Beacon information.
+ */
+router.post('/position', (req, res, next) => {
+  if (req.body.uuid === '' || req.body.uuid === undefined ||
+    req.body.position === '' || req.body.position === undefined ||
+    req.body.beacon_data === '' || req.body.beacon_data === undefined) {
+    return res.json({
+      status: 0,
+      message: 'Error. Try again!'
+    })
+  }
+  db.query('UPDATE `user` SET `position` = ?, `beacon_data` = ? WHERE `uuid` = ?',
+    [req.body.position, req.body.beacon_data, req.body.uuid],
+    (error, results, fields) => {
+      res.json({
+        status: (error) ? 0 : 1,
+        message: (error) ? `Error! ${error.sqlMessage}` : null,
+        result: (error) ? `Position not registered` : 'Position registered'
+      })
+    })
+})
 module.exports = router
