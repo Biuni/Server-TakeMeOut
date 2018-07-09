@@ -2,6 +2,7 @@ const uuid = require('uuid/v1')
 const crypto = require('crypto')
 const express = require('express')
 const db = require('../utils/db')
+const isEmergency = require('../utils/emergency')
 
 const router = express.Router()
 
@@ -102,13 +103,17 @@ router.post('/position', (req, res, next) => {
       message: 'Error. Try again!'
     })
   }
-  db.query('UPDATE `user` SET `position` = ?, `beacon_data` = ? WHERE `uuid` = ?',
-    [req.body.position, req.body.beacon_data, req.body.uuid],
-    (error, results, fields) => {
-      res.json({
-        status: (error) ? 0 : 1,
-        message: (error) ? `Error! ${error.sqlMessage}` : null,
-        result: (error) ? `Position not registered` : 'Position registered'
+  isEmergency().then(status => {
+    db.query('UPDATE `user` SET `position` = ?, `beacon_data` = ? WHERE `uuid` = ?',
+      [req.body.position, req.body.beacon_data, req.body.uuid],
+      (error, results, fields) => {
+        res.json({
+          status: (error) ? 0 : 1,
+          message: (error) ? `Error! ${error.sqlMessage}` : null,
+          result: (error) ? `Position not registered!` : {
+            emergency: status[0].emergency
+          }
+        })
       })
     })
 })
