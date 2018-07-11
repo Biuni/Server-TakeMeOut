@@ -115,6 +115,7 @@ router.post('/position', (req, res, next) => {
           }
         })
       })
-    })
+  })
 })
+
 module.exports = router

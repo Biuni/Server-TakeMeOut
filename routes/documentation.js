@@ -63,6 +63,20 @@ router.get('/', (req, res, next) => {
           name: 'pwd',
           type: 'String'
         }]
+      }, {
+        type: 'POST',
+        path: '/user/position',
+        info: 'Send to server the user position',
+        params: [{
+          name: 'uuid',
+          type: 'String'
+        }, {
+          name: 'position',
+          type: 'String'
+        }, {
+          name: 'beacon_data',
+          type: 'String'
+        }]
       }],
       navigation: [{
         type: 'GET',
@@ -72,6 +86,17 @@ router.get('/', (req, res, next) => {
           name: 'beacon',
           type: 'String'
         }
+      }, {
+        type: 'GET',
+        path: '/path/:start/:end',
+        info: 'Get the shortest path from start\'s beacon to arrive\'s beacon.',
+        params: [{
+          name: 'start',
+          type: 'String'
+        }, {
+          name: 'end',
+          type: 'String'
+        }]
       }]
     }
   })

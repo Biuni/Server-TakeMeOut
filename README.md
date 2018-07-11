@@ -41,11 +41,11 @@ If you want to check all the system you can run the unit tests. It's very easy, 
 | Type | Path | Params | About |
 | ------ | ------ | ------ | ------ |
 | `GET` | `/conn/info` | -- | Get information about the server and the database connection |
-| `GET` | `/conn/data` | -- | Get the database table with node information |
+| `GET` | `/conn/data` | -- | Get the database tables with all information |
 | `GET` | `/user/get/:uuid` | *uuid* | Get user information by uuid |
 | `POST` | `/user/register` | *mail* - *pwd* - *name* | Register a new user |
 | `POST` | `/user/login` | *mail* - *pwd* | Login an user |
-| `POST` | `/user/position` | *uuid* - *position* - *beacon_data* | Register user position |
+| `POST` | `/user/position` | *uuid* - *position* - *beacon_data* | Register user position and beacon data |
 | `GET` | `/nav/send/:beacon` | *beacon* | Get the shortest path to safe place using beacon id |
 | `GET` | `/nav/path/:start/:end` | *start* - *end* | Get the shortest path to arrive place using the start and the end beacon id |
 
